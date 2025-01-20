@@ -1,0 +1,1 @@
+This is a submodule of parent repo: https://github.com/dushananuradha/playwright-typescript-automation-framework
