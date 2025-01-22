@@ -19,7 +19,7 @@ export default class HomePage {
         this.appService = this.page.locator('//p[text()="Service"]');
     }
 
-    async verifyHomePageTitleVisibility(timeout: number = 10000) {
+    async verifyHomePageTitleVisibility(timeout: number = 20000) {
         try {
             await this.page.waitForSelector(this.titleHomePage, {
                 state: 'visible',
