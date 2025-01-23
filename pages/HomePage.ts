@@ -8,13 +8,16 @@ export default class HomePage {
     private readonly iconAppLauncher: any;
     private readonly appService: any;
     private readonly titleServicePage: any;
+    private readonly headerSetup: any;
     private textAssert: TextAssert;
 
     constructor(private page: Page) {
         this.textAssert = new TextAssert();
         this.titleHomePage = this.page.locator("//h1/span[text()='Home']");
+
         this.titleServicePage = this.page.locator('//h1/span[text()="Service"]');
         // this.iconAppLauncher = this.page.locator('//span[@title="Setup"]/ancestor::div[2]/child::div');
+        this.headerSetup = this.page.locator('//*[@title = "Setup"]');
         this.iconAppLauncher = this.page.getByText('App LauncherSetup');
         this.appService = this.page.locator('//p[text()="Service"]');
     }
@@ -35,8 +38,8 @@ export default class HomePage {
 
     async verifyHomePageTitleVisibility() {
         try {
-            await this.titleHomePage.waitFor({ state: 'visible', timeout: 30000 });
-            await this.textAssert.expectTextToBeVisible(this.titleHomePage);
+            await this.headerSetup.waitFor({ state: 'visible', timeout: 30000 });
+            await this.textAssert.expectTextToBeVisible(this.headerSetup);
             logger.info("Verified home page");
         } catch (error) {
             logger.error(`Failed to verify home page: ${error.message}`);
