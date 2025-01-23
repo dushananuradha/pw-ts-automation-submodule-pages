@@ -19,19 +19,31 @@ export default class HomePage {
         this.appService = this.page.locator('//p[text()="Service"]');
     }
 
-    async verifyHomePageTitleVisibility(timeout: number = 20000) {
+    // async verifyHomePageTitleVisibility(timeout: number = 20000) {
+    //     try {
+    //         await this.page.waitForSelector(this.titleHomePage, {
+    //             state: 'visible',
+    //             timeout: timeout
+    //         });
+    //         await this.textAssert.expectTextToBeVisible(this.titleHomePage);
+    //         logger.info("Verified home page");
+    //     } catch (error) {
+    //         logger.error(`Home page title not visible within ${timeout}ms`);
+    //         throw error;
+    //     }
+    // }
+
+    async verifyHomePageTitleVisibility() {
         try {
-            await this.page.waitForSelector(this.titleHomePage, {
-                state: 'visible',
-                timeout: timeout
-            });
+            await this.page.locator(this.titleHomePage).waitFor({ state: 'visible', timeout: 30000 });
             await this.textAssert.expectTextToBeVisible(this.titleHomePage);
             logger.info("Verified home page");
         } catch (error) {
-            logger.error(`Home page title not visible within ${timeout}ms`);
+            logger.error(`Failed to verify home page: ${error.message}`);
             throw error;
         }
     }
+
 
     async clickAppLaunchIcon() {
         await this.iconAppLauncher.click();
