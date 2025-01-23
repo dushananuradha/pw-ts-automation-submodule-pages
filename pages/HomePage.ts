@@ -35,7 +35,7 @@ export default class HomePage {
 
     async verifyHomePageTitleVisibility() {
         try {
-            await this.page.locator(this.titleHomePage).waitFor({ state: 'visible', timeout: 30000 });
+            await this.titleHomePage.waitFor({ state: 'visible', timeout: 30000 });
             await this.textAssert.expectTextToBeVisible(this.titleHomePage);
             logger.info("Verified home page");
         } catch (error) {
